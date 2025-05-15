@@ -93,16 +93,16 @@ const config = {
       },
     ],
     [
-      '@semantic-release/exec',
-      {
-        prepareCmd: `echo "${nextRelease.version}" > latest`,
-      },
-    ],
-    [
       '@semantic-release/npm',
       {
         npmPublish: false,
         pkgRoot: '.',
+      },
+    ],
+    [
+      '@semantic-release/exec',
+      {
+        prepareCmd: `echo "${nextRelease.version}" > latest`,
       },
     ],
     [
