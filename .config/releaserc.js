@@ -97,12 +97,12 @@ const config = {
         pkgRoot: '.',
       },
     ],
-    [
-      '@semantic-release/exec',
-      {
-        prepareCmd: `echo "${nextRelease.version}" > latest`,
-      },
-    ],
+    // [
+    //   '@semantic-release/exec',
+    //   {
+    //     prepareCmd: `echo "${nextRelease.version}" > latest`,
+    //   },
+    // ],
     [
       '@semantic-release/git',
       {
