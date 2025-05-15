@@ -14,6 +14,12 @@ on:
       - './release.config.cjs'
   workflow_dispatch: {}
 
+## Skip Husky checks as only pushes to main are via PR from develop
+## and checks are performed in the PR to merge, so no need to run
+## during the release process/commit.
+env:
+  HUSKY: 0
+
 permissions:
   packages: write
   contents: write
