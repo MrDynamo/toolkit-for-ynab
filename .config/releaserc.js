@@ -9,7 +9,7 @@ if (!branch) {
  * @type {import("semantic-release").GlobalConfig}
  */
 const config = {
-  branches: ['main', 'ci/automated-releases'],
+  branches: ['main'],
   plugins: [
     [
       '@semantic-release/exec',
