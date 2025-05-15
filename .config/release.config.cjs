@@ -11,7 +11,7 @@ const isMaster = branch === 'main';
  * @type {import("semantic-release").GlobalConfig}
  */
 const config = {
-  branches: ['main'],
+  branches: ['main', 'ci/automated-releases'],
   plugins: [
     [
       '@semantic-release/exec',
