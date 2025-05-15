@@ -107,7 +107,7 @@ const config = {
       '@semantic-release/git',
       {
         assets: ['CHANGELOG.md', 'latest', 'package.json'],
-        message: `chore(release): ${nextRelease.version}\n\n${nextRelease.notes}`,
+        message: 'chore(release): ${nextRelease.version}\n\n${nextRelease.notes}',
       },
     ],
   ],
