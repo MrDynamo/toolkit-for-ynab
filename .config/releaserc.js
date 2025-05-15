@@ -9,7 +9,7 @@ if (!branch) {
  * @type {import("semantic-release").GlobalConfig}
  */
 const config = {
-  branches: ['main', 'ci/automated-releases'],
+  branches: ['main'],
   plugins: [
     [
       '@semantic-release/exec',
@@ -97,12 +97,12 @@ const config = {
         pkgRoot: '.',
       },
     ],
-    [
-      '@semantic-release/exec',
-      {
-        prepareCmd: `echo "${nextRelease.version}" > latest`,
-      },
-    ],
+    // [
+    //   '@semantic-release/exec',
+    //   {
+    //     prepareCmd: `echo "${nextRelease.version}" > latest`,
+    //   },
+    // ],
     [
       '@semantic-release/git',
       {
