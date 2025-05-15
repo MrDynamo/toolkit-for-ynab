@@ -48,7 +48,7 @@ jobs:
 
       # Create Release for the Beta
       - name: Semantic Release
-        run: npx semantic-release
+        run: npx semantic-release --debug
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           # CURRENT_BRANCH: ${{ steps.branch-name.outputs.current_branch }}
