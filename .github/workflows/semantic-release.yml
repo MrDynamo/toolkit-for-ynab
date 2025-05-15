@@ -50,7 +50,7 @@ jobs:
       - name: Semantic Release for Beta
         run: npx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           CURRENT_BRANCH: ${{ steps.branch-name.outputs.current_branch }}
 
       # Sync master/beta back into develop so 'latest' file is always up to date
@@ -58,7 +58,7 @@ jobs:
         uses: devmasx/merge-branch@master
         with:
           type: now
-          github_token: ${{ steps.gh_app.outputs.token }}
+          github_token: ${{ secrets.GH_TOKEN }}
           from_branch: ${{ github.ref_name }}
           target_branch: develop
           message: 'chore: 🧽 sync develop with ${{ github.ref_name }}'
