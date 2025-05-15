@@ -1,23 +1,9 @@
-// Store the current branch in a variable
-const branch = process.env.CURRENT_BRANCH || 'main';
-
-if (!branch) {
-  throw new Error('CURRENT_BRANCH not set');
-}
-
 /**
  * @type {import("semantic-release").GlobalConfig}
  */
 const config = {
   branches: ['main'],
   plugins: [
-    [
-      '@semantic-release/exec',
-      {
-        // use semantic-release logger to print the branch name
-        prepareCmd: `echo "Branch: ${branch}"`,
-      },
-    ],
     [
       '@semantic-release/commit-analyzer',
       {
@@ -85,24 +71,12 @@ const config = {
       },
     ],
     [
-      '@semantic-release/changelog',
-      {
-        changelogFile: 'CHANGELOG.md',
-      },
-    ],
-    [
       '@semantic-release/npm',
       {
         npmPublish: false,
         pkgRoot: '.',
       },
     ],
-    // [
-    //   '@semantic-release/exec',
-    //   {
-    //     prepareCmd: `echo "${nextRelease.version}" > latest`,
-    //   },
-    // ],
     [
       '@semantic-release/git',
       {
