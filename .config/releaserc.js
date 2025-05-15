@@ -38,10 +38,6 @@ const config = {
             type: 'style',
             release: 'patch',
           },
-          // {
-          //     type: "test",
-          //     release: "patch",
-          // },
           {
             breaking: true,
             release: 'major',
