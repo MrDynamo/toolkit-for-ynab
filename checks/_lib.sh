@@ -11,6 +11,7 @@ find_check_files() {
     return
   }
   PRECOMMIT=1
+  COMMITMSG=1
   PREPUSH=1
   # END dummy variables
 
@@ -19,11 +20,16 @@ find_check_files() {
     -not -name '_lib.sh' \
     -not -name '_template.sh' | sort | while read -r file 
   do
-    unset check PRECOMMIT PREPUSH
+    unset check PRECOMMIT COMMITMSG PREPUSH
     . "$file"
     case $1 in
     precommit)
       if [ "$PRECOMMIT" = 1 ]; then
+        echo "$file"
+      fi
+      ;;
+    commmitmsg)
+      if [ "$COMMITMSG" = 1 ]; then
         echo "$file"
       fi
       ;;
