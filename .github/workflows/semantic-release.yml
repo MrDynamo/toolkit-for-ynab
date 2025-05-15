@@ -53,12 +53,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           # CURRENT_BRANCH: ${{ steps.branch-name.outputs.current_branch }}
 
-      # # Sync master/beta back into develop so 'latest' file is always up to date
-      # - name: Merge working branch -> develop
-      #   uses: devmasx/merge-branch@master
-      #   with:
-      #     type: now
-      #     github_token: ${{ secrets.GH_TOKEN }}
-      #     from_branch: ${{ github.ref_name }}
-      #     target_branch: develop
-      #     message: 'chore: 🧽 sync develop with ${{ github.ref_name }}'
+      # Sync main back into develop so that develop is always up to date
+      - name: Merge main branch -> develop
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          github_token: ${{ secrets.GH_TOKEN }}
+          from_branch: ${{ github.ref_name }}
+          target_branch: ci/automated-releases # REVERT TO DEVELOP
+          message: 'chore: 🧽 sync develop with ${{ github.ref_name }}'
