@@ -67,4 +67,4 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}
           from_branch: ${{ github.ref_name }}
           target_branch: ci/automated-releases # REVERT TO DEVELOP
-          message: 'chore: 🧽 sync develop with ${{ github.ref_name }}'
+          message: 'chore: 🧽 sync develop with ${{ github.ref_name }} [skip ci]'
