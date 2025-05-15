@@ -99,19 +99,19 @@ const config = {
         pkgRoot: '.',
       },
     ],
-    // [
-    //   '@semantic-release/exec',
-    //   {
-    //     prepareCmd: `echo "${nextRelease.version}" > latest`,
-    //   },
-    // ],
-    // [
-    //   '@semantic-release/git',
-    //   {
-    //     assets: ['CHANGELOG.md', 'latest'],
-    //     message: `chore(release): ${nextRelease.version}\n\n${nextRelease.notes}`,
-    //   },
-    // ],
+    [
+      '@semantic-release/exec',
+      {
+        prepareCmd: `echo "${nextRelease.version}" > latest`,
+      },
+    ],
+    [
+      '@semantic-release/git',
+      {
+        assets: ['CHANGELOG.md', 'latest'],
+        message: `chore(release): ${nextRelease.version}\n\n${nextRelease.notes}`,
+      },
+    ],
   ],
 };
 
