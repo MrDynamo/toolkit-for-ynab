@@ -1,0 +1,64 @@
+name: CI/CD Semantic Release
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths-ignore:
+      - '**.md'
+      # - "**/.*/**"
+      # - "**/.*"
+      - '**/latest'
+      - '**/CHANGELOG.md'
+      - './scripts/**'
+      - './release.config.cjs'
+  workflow_dispatch: {}
+
+permissions:
+  packages: write
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repo
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # Setup Node.js
+      - name: Set Node.js from .nvmrc
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      # Install Dependencies
+      - name: Install Dependencies
+        run: yarn install
+
+      # Get the current branch from git
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
+      # Create Release for the Beta
+      - name: Semantic Release for Beta
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          CURRENT_BRANCH: ${{ steps.branch-name.outputs.current_branch }}
+
+      # Sync master/beta back into develop so 'latest' file is always up to date
+      - name: Merge working branch -> develop
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          github_token: ${{ secrets.GH_TOKEN }}
+          from_branch: ${{ github.ref_name }}
+          target_branch: develop
+          message: 'chore: 🧽 sync develop with ${{ github.ref_name }}'
