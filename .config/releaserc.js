@@ -5,8 +5,6 @@ if (!branch) {
   throw new Error('CURRENT_BRANCH not set');
 }
 
-const isMaster = branch === 'main';
-
 /**
  * @type {import("semantic-release").GlobalConfig}
  */
@@ -108,15 +106,11 @@ const config = {
     [
       '@semantic-release/git',
       {
-        assets: ['CHANGELOG.md', 'latest'],
+        assets: ['CHANGELOG.md', 'latest', 'package.json'],
         message: `chore(release): ${nextRelease.version}\n\n${nextRelease.notes}`,
       },
     ],
   ],
 };
-
-if (isMaster) {
-  config.plugins.splice(-2, 0, '@semantic-release/github');
-}
 
 module.exports = config;
