@@ -76,7 +76,7 @@ const config = {
     [
       '@semantic-release/exec',
       {
-        publishCmd: 'rm src/manifest.json && cp src/manifest.placeholder.json src/manifest.json',
+        prepareCmd: 'rm src/manifest.json && cp src/manifest.placeholder.json src/manifest.json',
       },
     ],
     [
