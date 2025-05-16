@@ -103,10 +103,10 @@ const config = {
       '@semantic-release/github',
       {
         assets: [
-          'toolkit-for-ynab-v${nextRelease.version}-chrome.zip',
-          'toolkit-for-ynab-v${nextRelease.version}-firefox.zip',
-          'toolkit-for-ynab-source-v${nextRelease.version}-chrome.zip',
-          'toolkit-for-ynab-source-v${nextRelease.version}-firefox.zip',
+          'dist/toolkit-for-ynab-v${nextRelease.version}-chrome.zip',
+          'dist/toolkit-for-ynab-v${nextRelease.version}-firefox.zip',
+          'dist/toolkit-for-ynab-source-v${nextRelease.version}-chrome.zip',
+          'dist/toolkit-for-ynab-source-v${nextRelease.version}-firefox.zip',
         ],
       },
     ],
