@@ -1,6 +1,6 @@
 {
   "name": "toolkit-for-ynab",
-  "version": "3.17.6",
+  "version": "3.17.7",
   "private": true,
   "scripts": {
     "prepare": "husky install",
