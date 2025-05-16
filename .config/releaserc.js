@@ -74,13 +74,42 @@ const config = {
       },
     ],
     [
+      '@semantic-release/exec',
+      {
+        publishCmd: 'rm src/manifest.json && cp src/manifest.placeholder.json src/manifest.json',
+      },
+    ],
+    [
+      'semantic-release-plugin-update-version-in-files',
+      {
+        files: ['src/manifest.json'],
+        placeholder: '0.0.0-development',
+      },
+    ],
+    [
+      '@semantic-release/exec',
+      {
+        publishCmd: 'yarn build:ci-test', // UPDATE TO 'yarn build:ci' when in 'production'
+      },
+    ],
+    [
       '@semantic-release/git',
       {
-        assets: ['package.json'],
+        assets: ['package.json', 'src/manifest.json', 'docs'],
         message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
     ],
-    ['@semantic-release/github', {}],
+    [
+      '@semantic-release/github',
+      {
+        assets: [
+          'toolkit-for-ynab-v${nextRelease.version}-chrome.zip',
+          'toolkit-for-ynab-v${nextRelease.version}-firefox.zip',
+          'toolkit-for-ynab-source-v${nextRelease.version}-chrome.zip',
+          'toolkit-for-ynab-source-v${nextRelease.version}-firefox.zip',
+        ],
+      },
+    ],
   ],
 };
 
